@@ -1,7 +1,7 @@
 {
   "name": "express-blog",
   "version": "1.0.0",
-  "description": "",
+  "description": "用 express 和 orm 改寫的部落格",
   "main": "index.js",
   "scripts": {
     "start": "node index.js",
