@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <%- include('components/head') %>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body id="admin">
+  <%- include('components/nav') %> 
+
+  <section class="banner banner--admin">
+    <h2 class="banner__title">管理後台</h2>
+  </section>
+
+
+  <main class="main">
+    <div class="container">
+      <div class="d-flex flex-wrap justify-content-center align-items-center mb-5">
+        <a class="button-add-post mb-3 mb-md-0" href="/admin/posts">管理文章</a>
+        <a class="button-category ms-md-3" href="/admin/categories">管理分類</a>
+      </div>
+    </div>
+  </main>
+  
+  <footer class="footer bg-dark text-center p-3 text-light">
+    Copyright © 2022 Peanu's Blog All Rights Reserved.
+  </footer>
+
+
+</body>
+</html>

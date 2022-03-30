@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <%- include('components/head') %>
+  <link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+  <%- include('components/nav') %> 
+
+  <section class="banner banner--admin">
+    <h2 class="banner__title">新增文章</h2>
+  </section>
+
+
+  <main class="main">
+    <div class="container">
+      <% if (errorMessage && errorMessage.length !== 0) { %>
+        <div class="row col-lg-8 mx-lg-auto mb-3">
+          <div class="text-danger">錯誤：<%= errorMessage %></div>
+        </div>
+      <% } %>
+      <form action="/admin/add_post" method="POST">
+        <div class="row col-lg-8 mx-lg-auto mb-3">
+          <div class="select-box">
+            <select name="category" class="form-select" aria-label="Default select example">
+              <% for (const category of categories) { %>
+                <option value="<%= category.id %>" <%= category.name === 'Others' ? 'selected' : '' %>><%= category.name %></option>
+              <% } %>
+            </select>
+          </div>
+        </div>
+        <div class="row col-lg-8 mx-lg-auto mb-3">
+          <div class="input-group">
+            <span class="input-group-text" id="inputGroup-sizing-default">文章標題</span>
+            <input type="text" name="title" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default">
+          </div>
+        </div>
+              
+        <div class="row col-lg-8 mx-lg-auto mb-3">
+          <div class="input-group">
+            <span class="input-group-text">預覽文字</span>
+            <textarea class="form-control" name="preview" aria-label="With textarea"></textarea>
+          </div>
+        </div>
+
+        <div class="row col-lg-8 mx-lg-auto">
+          <textarea name="content" id="editor" class="form-control" aria-label="With textarea"></textarea>
+        </div>
+        <div class="row col-lg-8 mx-lg-auto mt-3">
+          <div class="text-end">
+            <button type="submit" class="btn btn-warning">送出</button>
+          </div>
+        </div>
+      </form>
+    </div>
+  </main>
+  
+  
+  <footer class="footer bg-dark text-center p-3 text-light">
+    Copyright © 2022 Peanu's Blog All Rights Reserved.
+  </footer>
+
+  <script src="../plug-in/ckeditor/ckeditor.js"></script>
+  <script>
+    ClassicEditor
+    .create( document.querySelector( '#editor' ), {
+      toolbar: [
+        'heading', '|', 'bold', 'italic', 'code',
+        'link','bulletedList','numberedList',
+        '|','outdent','indent', '|',
+        'blockQuote','insertTable','undo',
+        'redo','codeBlock'
+      ],
+      indentBlock:{
+        offset: 0.8,
+        unit: 'em'
+      },
+      codeBlock: {
+        languages: [
+          { language: 'plaintext', label: 'Plain text' },
+          { language: 'css', label: 'CSS' },
+          { language: 'html', label: 'HTML' },
+          { language: 'xml', label: 'XML' },
+          { language: 'javascript', label: 'JavaScript' },
+          { language: 'json', label: 'JSON' },
+          { language: 'bash', label: 'Bash' },
+          { language: 'sql', label: 'SQL' },
+          { language: 'php', label: 'PHP' },
+          { language: 'c', label: 'C' },
+          { language: 'c#', label: 'C#' },
+          { language: 'diff', label: 'Diff' },
+          { language: 'java', label: 'Java' },
+          { language: 'python', label: 'Python' },
+          { language: 'ruby', label: 'Ruby' },
+          { language: 'typescript', label: 'TypeScript' },
+        ]
+      }
+    })
+    .catch( error => {
+        console.error( error );
+    } );
+  </script>
+</body>
+</html>

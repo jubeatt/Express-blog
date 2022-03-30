@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <%- include('components/head') %>
+  <link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+  <%- include('components/nav') %> 
+
+  <section class="banner">
+    <h2 class="banner__title">分類：<%= category.name %></h2>
+  </section>
+
+
+  <main class="main">
+    <div class="container">
+      <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4 mb-5">
+
+        <% for (const post of category.Posts) { %>
+          <a class="col" href="/posts/<%= post.id %>">
+            <div class="card">
+              <div class="card-img-wrap">
+                <img src="/img/post_preview.jpg" class="card-img-top">
+              </div>
+              <div class="card-body">
+                <h5 class="card-title fw-bold"><%= post.title %></h5>
+                <p class="card-text"><%= post.preview %></p>
+              </div>
+            </div>
+          </a>
+        <% } %>
+
+        
+      </div>
+      <nav aria-label="Page navigation example">
+        <div class="d-flex justify-content-center">
+          <ul class="pagination">
+            <li class="page-item <%= currentPage === 1 ? 'disabled' : '' %>">
+              <a class="page-link" href="/categories/<%= category.name %>/?page=<%= currentPage - 1 %>">Previous</a>
+            </li>
+
+            <% for (let i=1; i<=totalPage; i++) { %>
+              <li class="page-item <%= currentPage === i ? 'active' : ''%>">
+                <a class="page-link" href="/categories/<%= category.name %>?page=<%= i %>"><%= i %></a>
+              </li>
+            <% } %>
+
+            <li class="page-item <%= currentPage === totalPage ? 'disabled' : '' %>">
+              <a class="page-link" href="/categories/<%= category.name %>?page=<%= currentPage + 1 %>">Next</a>
+            </li>
+          </ul>
+        </div>
+      </nav>
+    </div>
+
+  </main>
+  
+  <footer class="footer bg-dark text-center p-3 text-light">
+    Copyright © 2022 Peanu's Blog All Rights Reserved.
+  </footer>
+
+
+</body>
+</html>

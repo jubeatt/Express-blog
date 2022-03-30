@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <%- include('components/head') %>
+    <!-- font-awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" integrity="sha512-1ycn6IcaQQ40/MKBW2W4Rhis/DbILU74C1vSrLJxCq57o941Ym01SwNsOMqvEBFlcgUa6xLiPY/NS5R+E6ztJQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <!-- highlight -->
+  <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/11.4.0/styles/agate.min.css">
+  <link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+  <%- include('components/nav') %> 
+
+  <section class="banner">
+    <h2 class="banner__title"><%= post.title %></h2>
+  </section>
+
+
+  <main class="main">
+    <div class="container">
+      <div class="post-header-item">
+        <i class="far fa-calendar-alt"></i>
+        日期：<%= new Date(post.createdAt).toLocaleString() %>
+      </div>
+      <div class="post-header-item">
+        <i class="fas fa-tag"></i>
+        分類：<a href="/categories/<%= post.Category?.name %>"><%= post.Category?.name %></a>
+      </div>
+      <div class="line-break"></div>
+      <div class="post-content"><%- post.content %></div>
+    </div>
+
+  </main>
+  
+  <footer class="footer bg-dark text-center p-3 text-light">
+    Copyright © 2022 Peanu's Blog All Rights Reserved.
+  </footer>
+
+
+  <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/11.4.0/highlight.min.js"></script>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/highlightjs-line-numbers.js/2.8.0/highlightjs-line-numbers.min.js"></script>
+
+  <script>
+    hljs.highlightAll();
+    hljs.initLineNumbersOnLoad({
+      singleLine: true
+    });
+  </script>
+
+</body>
+</html>

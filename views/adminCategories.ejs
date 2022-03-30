@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <%- include('components/head') %>
+  <link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+  <%- include('components/nav') %> 
+
+  <section class="banner banner--admin">
+    <h2 class="banner__title">分類管理</h2>
+  </section>
+
+
+  <main class="main">
+    <div class="container">
+
+      <div class="d-flex flex-wrap justify-content-center align-items-center mb-5">
+        <a class="button-add-post mb-3 mb-md-0" href="/admin/add_category">新增分類</a>
+      </div>
+
+      <div class="card mb-5">
+        <div class="card-header py-4 fs-4">
+          分類列表
+        </div>
+        <ul class="list-group list-group-flush">
+          <% for (const category of categories) { %>
+            <li class="list-group-item d-flex justify-content-between align-items-center">
+              <div>
+                <%= category?.name %>
+              </div>
+              <div class="d-flex flex-shrink-0 align-items-center">
+                <a href="/admin/update_category?id=<%= category.id %>" class="btn btn-warning me-1">編輯</a>
+                <form method="POST" action="/admin/delete_category">
+                  <input type="hidden" name="id" value="<%= category.id %>">
+                  <input type="submit" class="btn btn btn-danger" value="刪除">
+                </form>
+              </div>
+            </li>
+          <% } %>
+        </ul>
+      </div>
+      <nav aria-label="Page navigation example">
+        <div class="d-flex justify-content-center">
+          <ul class="pagination">
+            <li class="page-item <%= currentPage === 1 ? 'disabled' : '' %>">
+              <a class="page-link" href="/admin/categories?page=<%= currentPage - 1 %>">Previous</a>
+            </li>
+
+            <% for (let i=1; i<=totalPage; i++) { %>
+              <li class="page-item <%= currentPage === i ? 'active' : ''%>">
+                <a class="page-link" href="/admin/categories?page=<%= i %>"><%= i %></a>
+              </li>
+            <% } %>
+
+            <li class="page-item <%= currentPage === totalPage ? 'disabled' : '' %>">
+              <a class="page-link" href="/admin/categories?page=<%= currentPage + 1 %>">Next</a>
+            </li>
+          </ul>
+        </div>
+      </nav>
+    </div>
+  </main>
+  
+  <footer class="footer bg-dark text-center p-3 text-light">
+    Copyright © 2022 Peanu's Blog All Rights Reserved.
+  </footer>
+
+</body>
+</html>
