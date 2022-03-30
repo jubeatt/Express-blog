@@ -10,6 +10,7 @@
 - Sequelize
 - MySQL
 - MVC 架構
+- EJS
 - Bootstrap
 - 串接 CKEditor、highlight.js
 
