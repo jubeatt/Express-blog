@@ -13,7 +13,7 @@ img {
 }
 
 /* 導覽列 active 判斷 */
-#category a[href="categories.php"],
+#category a[href="/categories"],
 #about a[href="/about"],
 #admin a[href="/admin"],
 #login a[href="/login"] {
