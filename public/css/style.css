@@ -220,7 +220,7 @@ code {
   background-color: #f5f5f5;
 }
 pre code.hljs {
-  padding: 0;
+  padding: 0 !important;
 }
 .hljs-ln-numbers {
   -webkit-touch-callout: none;
